@@ -2,6 +2,7 @@ package com.backend.service.serviceImpl;
 
 import org.modelmapper.ModelMapper;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +24,10 @@ public class userServiceImpl implements UserService {
     @Autowired
     private UserRepo userRepo;
 
+
     @Override
     public UserDto createUser(UserDto userDto) {
+
 
         User user = this.dtoToUser(userDto);
         User savedUser = this.userRepo.save(user);
@@ -33,6 +36,7 @@ public class userServiceImpl implements UserService {
 
     @Override
     public UserDto updateUser(Integer id, UserDto userDto) {
+
 
         User user = this.userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
         user.setUserName(userDto.getUserName());
