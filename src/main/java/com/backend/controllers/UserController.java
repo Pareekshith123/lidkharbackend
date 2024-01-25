@@ -1,4 +1,4 @@
-package controllers;
+package com.backend.controllers;
 
 import java.util.List;
 
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Dtos.UserDto;
+import com.backend.Dtos.UserDto;
 
 import jakarta.validation.Valid;
-import service.UserService;
+import com.backend.service.UserService;
 
 
 @RestController

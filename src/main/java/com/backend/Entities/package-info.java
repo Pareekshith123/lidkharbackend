@@ -5,4 +5,4 @@
  * @author Sunplus
  *
  */
-package Entities;
+package com.backend.Entities;

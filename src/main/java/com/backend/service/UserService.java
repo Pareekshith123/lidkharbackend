@@ -1,9 +1,9 @@
-package service;
+package com.backend.service;
 import java.util.List;
 
-import com.Dtos.UserDto;
+import com.backend.Dtos.UserDto;
 
-import Entities.User;
+import com.backend.Entities.User;
 
 public interface UserService {
 

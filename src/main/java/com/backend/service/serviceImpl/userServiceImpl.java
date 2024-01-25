@@ -1,17 +1,17 @@
-package service.serviceImpl;
+package com.backend.service.serviceImpl;
 
 import org.modelmapper.ModelMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.Dtos.UserDto;
+import com.backend.Dtos.UserDto;
 
-import Entities.User;
-import repository.UserRepo;
-import service.UserService;
+import com.backend.Entities.User;
+import com.backend.repository.UserRepo;
+import com.backend.service.UserService;
 
-import exceptions.ResourceNotFoundException;
+import com.backend.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;
