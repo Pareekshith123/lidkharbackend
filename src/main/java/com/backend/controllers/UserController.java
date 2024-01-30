@@ -6,11 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.service.annotation.PutExchange;
 
 import com.backend.Dtos.UserDto;
 
@@ -52,7 +56,39 @@ public class UserController {
 	    }
 	}
 
+	// Corrected @PutMapping
+	@PutMapping("/update/{id}") // Use {id} instead of {$id}
+	public ResponseEntity<UserDto> updateUser(@PathVariable Integer id, @RequestBody UserDto userDto) {
+	    try {
+	        UserDto user = this.userService.updateUser(id, userDto);
+	        return new ResponseEntity<>(user, HttpStatus.ACCEPTED); // Simplified ResponseEntity
+	    } catch (Exception e) {
+	        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	    }
+	}
 
+	// Corrected @GetMapping
+	@GetMapping("/{id}") // Use {id} instead of {$id}
+	public ResponseEntity<UserDto> getUserById(@PathVariable Integer id) {
+	    try {
+	        UserDto userDto = this.userService.getUserById(id);
+	        return new ResponseEntity<>(userDto, HttpStatus.OK); // Simplified ResponseEntity
+	    } catch (Exception e) {
+	        return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Change to NOT_FOUND if an exception occurs
+	    }
+	}
+ @DeleteMapping("/{id}")
+ public String deleteUser(@PathVariable Integer id){
+	 try {
+		this.userService.deleteUser(id);
+		String message="The User is Deleted Successfully";
+		return message; 
+	} catch (Exception e) {
+		String messageString="Could't delete the User!";
+		return messageString;
+		// TODO: handle exception
+	}
+ }
 	
 		
 }
