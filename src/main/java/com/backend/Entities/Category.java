@@ -18,27 +18,29 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long categoryId;
+
 	@Column(name = "title")
 	private String title;
+
 
 	@Column(name = "description")
 	private String description;
 	
     @OneToMany(mappedBy = "category" ,cascade=CascadeType.ALL)
 	private List<Products> products = new ArrayList<>();
+    
 
 	public Category() {
 		super();
 	}
-	
 
-	public Category(Long categoryId, String title, String description) {
+	public Category(Long categoryId, String title, String description, List<Products> products) {
 		super();
 		this.categoryId = categoryId;
 		this.title = title;
 		this.description = description;
+		this.products = products;
 	}
-
 
 	public Long getCategoryId() {
 		return categoryId;
@@ -64,4 +66,14 @@ public class Category {
 		this.description = description;
 	}
 
+	public List<Products> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Products> products) {
+		this.products = products;
+	}
+    
+	 
+	
 }
