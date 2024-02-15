@@ -14,64 +14,67 @@ import com.backend.exceptions.ResourceNotFoundException;
 import com.backend.repository.CategoryRepo;
 import com.backend.service.CategorySevice;
 @Service
-public class CategoryServiceImpl implements CategorySevice{
-	@Autowired 
-	private CategoryRepo categoryRepo;
-	@Autowired
-	private ModelMapper modelMapper;
+public class CategoryServiceImpl implements CategorySevice {
 
-	@Override
-	public CategoryDto createCategory(CategoryDto categoryDto) {
-	Category category =this.dtoToCategory(categoryDto);
-	Category category2=this.categoryRepo.save(category);
-		return this.categoryToDto(category2);
-	}
+    @Autowired
+    private CategoryRepo categoryRepo;
 
-	@Override
-	public CategoryDto updateCategory(Long categoryId, CategoryDto categoryDto) {
-		
-		Category category=this.categoryRepo.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("Category", "CategoryId", categoryId));
-		category.setTitle(categoryDto.getTitle());
-		category.setDescription(categoryDto.getDescription());
-		Category updatedCategory=this.categoryRepo.save(category);
-		return this.categoryToDto(updatedCategory);
-	}
+    @Autowired
+    private ModelMapper modelMapper;
 
-	@Override
-	public List<CategoryDto> getAllCategories() {
-      List<Category> category = this.categoryRepo.findAll();
-      List<CategoryDto> categoryList = category.stream().map(this::categoryToDto).collect(Collectors.toList());
+    @Override
+    public CategoryDto createCategory(CategoryDto categoryDto) {
 
+        Category category = dtoToCategory(categoryDto);
+        Category savedCategory = categoryRepo.save(category);
+        return categoryToDto(savedCategory);
+    }
 
-		return categoryList;
-	}
+    @Override
+    public CategoryDto updateCategory(Long categoryId, CategoryDto categoryDto) {
 
-	@Override
-	public CategoryDto getCategoryById(Long categoryId) {
-		Category category=this.categoryRepo.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("Category", "CategoryId", categoryId));
-		return this.categoryToDto(category);
-	}
+        Category category = categoryRepo.findById(categoryId)
+                .orElseThrow(() -> new ResourceNotFoundException("Category", "categoryId", categoryId));
 
-	@Override
-	public String deleteCategory(Long categoryId) {
-		
-		Category category=this.categoryRepo.findById(categoryId).orElseThrow(()-> new ResourceNotFoundException("Category", "CategoryId", categoryId));
-		this.categoryRepo.delete(category);
-		return "the Category is deleted Successfully";
-	}
+        category.setTitle(categoryDto.getTitle());
+        category.setDescription(categoryDto.getDescription());
+
+        Category updatedCategory = categoryRepo.save(category);
+        return categoryToDto(updatedCategory);
+    }
+
+    @Override
+    public List<CategoryDto> getAllCategories() {
 
 
-	  public CategoryDto categoryToDto(Category category) {
 
+        List<Category> categories = categoryRepo.findAll();
+        return categories.stream()
+                .map(this::categoryToDto)
+                .collect(Collectors.toList());
+    }
 
-	        return this.modelMapper.map(category, CategoryDto.class);
-	    }
+    @Override
+    public CategoryDto getCategoryById(Long categoryId) {
+        Category category = categoryRepo.findById(categoryId)
+                .orElseThrow(() -> new ResourceNotFoundException("Category", "categoryId", categoryId));
+        return categoryToDto(category);
+    }
 
-	    public Category dtoToCategory(CategoryDto categoryDto) {
+    @Override
+    public String deleteCategory(Long categoryId) {
+        Category category = categoryRepo.findById(categoryId)
+                .orElseThrow(() -> new ResourceNotFoundException("Category", "categoryId", categoryId));
+        categoryRepo.delete(category);
+        return "The Category is deleted Successfully";
+    }
 
+    public CategoryDto categoryToDto(Category category) {
+        return modelMapper.map(category, CategoryDto.class);
+    }
 
-	        return this.modelMapper.map(categoryDto, Category.class);
-	    }
-	
-
+    public Category dtoToCategory(CategoryDto categoryDto) {
+        return modelMapper.map(categoryDto, Category.class);
+    }
 }
+

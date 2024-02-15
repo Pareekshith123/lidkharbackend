@@ -27,15 +27,14 @@ import com.backend.service.UserService;
 @RequestMapping("/api/users")
 public class UserController {
 
-	public UserController() {
-
-	}
-
 	@Autowired
 	private UserService userService;
 
+
+
 	   @PostMapping("/create")
 	    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
+
 	        try {
 	            UserDto createdUserDto = this.userService.createUser(userDto);
 	            return new ResponseEntity<>(createdUserDto, HttpStatus.CREATED);
@@ -44,8 +43,10 @@ public class UserController {
 	            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	        }
 	    }
-	@GetMapping("/")
+	@GetMapping("/all")
 	public ResponseEntity<List<UserDto>> getAllUser() {
+
+
 
 	    try {
 	        List<UserDto> users = this.userService.getAllUsers();
@@ -59,6 +60,7 @@ public class UserController {
 	// Corrected @PutMapping
 	@PutMapping("/update/{id}") // Use {id} instead of {$id}
 	public ResponseEntity<UserDto> updateUser(@PathVariable Integer id, @RequestBody UserDto userDto) {
+
 	    try {
 	        UserDto user = this.userService.updateUser(id, userDto);
 	        return new ResponseEntity<>(user, HttpStatus.ACCEPTED); // Simplified ResponseEntity
@@ -70,6 +72,7 @@ public class UserController {
 	// Corrected @GetMapping
 	@GetMapping("/{id}") // Use {id} instead of {$id}
 	public ResponseEntity<UserDto> getUserById(@PathVariable Integer id) {
+
 	    try {
 	        UserDto userDto = this.userService.getUserById(id);
 	        return new ResponseEntity<>(userDto, HttpStatus.OK); // Simplified ResponseEntity

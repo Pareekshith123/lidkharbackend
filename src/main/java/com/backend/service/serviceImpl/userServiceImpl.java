@@ -21,12 +21,15 @@ import java.util.stream.Collectors;
 public class userServiceImpl implements UserService {
     @Autowired
     private ModelMapper modelMapper;
+
     @Autowired
     private UserRepo userRepo;
 
 
+
     @Override
     public UserDto createUser(UserDto userDto) {
+
 
 
         User user = this.dtoToUser(userDto);
@@ -51,6 +54,8 @@ public class userServiceImpl implements UserService {
 
     @Override
     public List<UserDto> getAllUsers() {
+
+
         List<User> userList = this.userRepo.findAll();
         List<UserDto> userListDto = userList.stream().map(this::userToDto).collect(Collectors.toList());
         return userListDto;
@@ -72,6 +77,7 @@ public class userServiceImpl implements UserService {
     }
 
     public UserDto userToDto(User user) {
+
 
         return this.modelMapper.map(user, UserDto.class);
     }

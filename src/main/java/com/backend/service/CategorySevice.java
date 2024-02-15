@@ -2,8 +2,10 @@ package com.backend.service;
 
 import java.util.List;
 
-import com.backend.Dtos.CategoryDto;
+import org.springframework.stereotype.Service;
 
+import com.backend.Dtos.CategoryDto;
+@Service
 public interface CategorySevice {
 	CategoryDto createCategory(CategoryDto categoryDto);
 

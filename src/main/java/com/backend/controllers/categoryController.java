@@ -2,6 +2,7 @@ package com.backend.controllers;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -31,6 +32,7 @@ public class categoryController {
     @PostMapping("/create")
     public ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CategoryDto categoryDto){
 
+
        try {
         CategoryDto created =this.categorySevice.createCategory(categoryDto);
         return new ResponseEntity<>(created,HttpStatus.CREATED);
@@ -41,6 +43,7 @@ public class categoryController {
     }
     @PutMapping("/update/{CategoryId}")
     public ResponseEntity<CategoryDto> updateCategory(@PathVariable Long CategoryId ,@RequestBody CategoryDto categoryDto){
+
 
        try {
         CategoryDto updated =this.categorySevice.updateCategory(CategoryId, categoryDto);
@@ -54,6 +57,7 @@ public class categoryController {
     @GetMapping("/all")
     public ResponseEntity<List<CategoryDto>> GetAllCategories(){
 
+
        try {
        List< CategoryDto > categoryList =this.categorySevice.getAllCategories();
         return new ResponseEntity<>(categoryList,HttpStatus.OK);
@@ -62,5 +66,17 @@ public class categoryController {
        } 
 
     }
+    @GetMapping("/getCategory/{CategoryId}")
+    public ResponseEntity<CategoryDto> GetAllCategories(@PathVariable Long CategoryId){
+
+       try {
+        CategoryDto  categoryList =this.categorySevice.getCategoryById(CategoryId);
+        return new ResponseEntity<>(categoryList,HttpStatus.OK);
+       } catch (Exception e) {
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+       } 
+
+    }
+    
     
 }
