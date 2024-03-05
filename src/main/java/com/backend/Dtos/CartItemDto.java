@@ -3,6 +3,8 @@ package com.backend.Dtos;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.backend.Entities.User;
+
 public class CartItemDto {
 
 	private Long cartItemId;
@@ -12,7 +14,7 @@ public class CartItemDto {
 	private UserDto userDto;
 	
 private ProductsDto productsDto;
-	
+
 
 	public CartItemDto() {
 		super();
@@ -66,6 +68,8 @@ private ProductsDto productsDto;
 	public void setProductsDto(ProductsDto productsDto) {
 		this.productsDto = productsDto;
 	}
+
+
 
 
 

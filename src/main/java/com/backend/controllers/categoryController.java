@@ -58,6 +58,7 @@ public class categoryController {
     public ResponseEntity<List<CategoryDto>> GetAllCategories(){
 
 
+
        try {
        List< CategoryDto > categoryList =this.categorySevice.getAllCategories();
         return new ResponseEntity<>(categoryList,HttpStatus.OK);
@@ -68,6 +69,7 @@ public class categoryController {
     }
     @GetMapping("/getCategory/{CategoryId}")
     public ResponseEntity<CategoryDto> GetAllCategories(@PathVariable Long CategoryId){
+
 
        try {
         CategoryDto  categoryList =this.categorySevice.getCategoryById(CategoryId);

@@ -46,6 +46,7 @@ public class ProductsServiceImpl implements ProductsService {
 
 
 
+
       Category category = categoryRepo.findById(categoryId)
               .orElseThrow(() -> new ResourceNotFoundException("Category", "categoryId", categoryId));
 
@@ -91,6 +92,7 @@ public class ProductsServiceImpl implements ProductsService {
 
 	@Override
 	public ProductsDto updateProduct(Long categoryId, Long productId, ProductsDto productsDto) {
+
 
 
 

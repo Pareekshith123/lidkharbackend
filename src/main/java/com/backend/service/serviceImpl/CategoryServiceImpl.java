@@ -48,6 +48,8 @@ public class CategoryServiceImpl implements CategorySevice {
 
 
 
+
+
         List<Category> categories = categoryRepo.findAll();
         return categories.stream()
                 .map(this::categoryToDto)

@@ -47,6 +47,7 @@ public class UserController {
 	public ResponseEntity<List<UserDto>> getAllUser() {
 
 
+ 
 
 	    try {
 	        List<UserDto> users = this.userService.getAllUsers();
@@ -73,6 +74,7 @@ public class UserController {
 	@GetMapping("/{id}") // Use {id} instead of {$id}
 	public ResponseEntity<UserDto> getUserById(@PathVariable Integer id) {
 
+
 	    try {
 	        UserDto userDto = this.userService.getUserById(id);
 	        return new ResponseEntity<>(userDto, HttpStatus.OK); // Simplified ResponseEntity
@@ -82,6 +84,7 @@ public class UserController {
 	}
  @DeleteMapping("/{id}")
  public String deleteUser(@PathVariable Integer id){
+
 	 try {
 		this.userService.deleteUser(id);
 		String message="The User is Deleted Successfully";
@@ -89,7 +92,6 @@ public class UserController {
 	} catch (Exception e) {
 		String messageString="Could't delete the User!";
 		return messageString;
-		// TODO: handle exception
 	}
  }
 	

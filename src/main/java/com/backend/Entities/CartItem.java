@@ -1,5 +1,7 @@
 package com.backend.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,7 +26,12 @@ public class CartItem {
 
     private Integer quantity;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
+    
     
 
 	public CartItem() {
@@ -32,16 +39,13 @@ public class CartItem {
 	}
 
 
-
-
-	public CartItem(Long cartItemId, Products products, Integer quantity) {
+	public CartItem(Long cartItemId, Products products, Integer quantity, User user) {
 		super();
 		this.cartItemId = cartItemId;
 		this.products = products;
 		this.quantity = quantity;
+		this.user = user;
 	}
-
-
 
 
 	public Long getCartItemId() {
@@ -49,13 +53,9 @@ public class CartItem {
 	}
 
 
-
-
 	public void setCartItemId(Long cartItemId) {
 		this.cartItemId = cartItemId;
 	}
-
-
 
 
 	public Products getProducts() {
@@ -63,13 +63,9 @@ public class CartItem {
 	}
 
 
-
-
 	public void setProducts(Products products) {
 		this.products = products;
 	}
-
-
 
 
 	public Integer getQuantity() {
@@ -77,11 +73,22 @@ public class CartItem {
 	}
 
 
-
-
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+    
+
+
 
 }
 

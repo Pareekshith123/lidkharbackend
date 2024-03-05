@@ -39,6 +39,7 @@ public class ProductsDto {
 		private String manufacturer;
         private String thickness;
 		public ProductsDto() {
+
 			super();
 		}
 		

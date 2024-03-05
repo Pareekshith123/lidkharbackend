@@ -20,6 +20,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
 
+
     @Column(name = "title")
     private String title;
 
@@ -29,6 +30,7 @@ public class Category {
     
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Products> products = new ArrayList<>();
+
 
 
 	public Category() {

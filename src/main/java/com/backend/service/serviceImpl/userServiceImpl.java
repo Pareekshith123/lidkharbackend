@@ -32,6 +32,7 @@ public class userServiceImpl implements UserService {
 
 
 
+
         User user = this.dtoToUser(userDto);
         User savedUser = this.userRepo.save(user);
         return this.userToDto(savedUser);
@@ -39,6 +40,7 @@ public class userServiceImpl implements UserService {
 
     @Override
     public UserDto updateUser(Integer id, UserDto userDto) {
+
 
 
         User user = this.userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
@@ -56,6 +58,8 @@ public class userServiceImpl implements UserService {
     public List<UserDto> getAllUsers() {
 
 
+
+
         List<User> userList = this.userRepo.findAll();
         List<UserDto> userListDto = userList.stream().map(this::userToDto).collect(Collectors.toList());
         return userListDto;
@@ -64,12 +68,15 @@ public class userServiceImpl implements UserService {
     @Override
     public UserDto getUserById(Integer id) {
 
+
+
         User user = this.userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
         return this.userToDto(user);
     }
 
     @Override
     public String deleteUser(Integer id) {
+
 
         User user = this.userRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
         this.userRepo.delete(user);
@@ -79,10 +86,12 @@ public class userServiceImpl implements UserService {
     public UserDto userToDto(User user) {
 
 
+
         return this.modelMapper.map(user, UserDto.class);
     }
 
     public User dtoToUser(UserDto userDto) {
+
 
         return this.modelMapper.map(userDto, User.class);
     }

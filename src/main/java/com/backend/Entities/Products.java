@@ -57,8 +57,10 @@ public class Products {
     @ManyToOne
     @JoinColumn(name="category_id")
 	private Category category;
+
     @OneToMany(mappedBy = "products", fetch = FetchType.EAGER)
     private List<CartItem> cartItems;
+
   
     
 	public Products() {

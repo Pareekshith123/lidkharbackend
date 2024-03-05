@@ -28,13 +28,17 @@ public class UserRoles {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	@JsonIgnore
-	private User user;;
+	private User user;
+
+
 
 	public UserRoles() {
+
 		super();
 	}
 
 	public UserRoles(Long roleId, String role, String modelPermission, User user) {
+
 		super();
 		this.roleId = roleId;
 		this.role = role;
@@ -43,14 +47,17 @@ public class UserRoles {
 	}
 
 	public Long getRoleId() {
+
 		return roleId;
 	}
 
 	public void setRoleId(Long roleId) {
+
 		this.roleId = roleId;
 	}
 
 	public String getRole() {
+
 		return role;
 	}
 
@@ -67,6 +74,7 @@ public class UserRoles {
 	}
 
 	public User getUser() {
+
 		return user;
 	}
 
@@ -75,3 +83,4 @@ public class UserRoles {
 	}
 
 }
+  
