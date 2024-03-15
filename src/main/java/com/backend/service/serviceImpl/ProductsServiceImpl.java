@@ -47,6 +47,7 @@ public class ProductsServiceImpl implements ProductsService {
 
 
 
+
       Category category = categoryRepo.findById(categoryId)
               .orElseThrow(() -> new ResourceNotFoundException("Category", "categoryId", categoryId));
 

@@ -112,6 +112,7 @@ public class CartItemsServiceImpl implements CartItemsService {
     public List<CartItemDto> getAllCartItemsByUserId(Integer userId) {
 
 
+
         // Retrieve the user
         User user = userRepo.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + userId, "userId", userId));

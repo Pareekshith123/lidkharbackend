@@ -18,6 +18,5 @@ public class LidkharbackendApplication {
 
 		return new ModelMapper();
 	}
-
-
 }
+ 

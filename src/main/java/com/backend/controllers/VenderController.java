@@ -32,6 +32,7 @@ public class VenderController {
 
     @GetMapping("/")
     public ResponseEntity<List<VendersDto>> getAllVenders() {
+
         List<VendersDto> venders = venderService.getAlVenders();
         return new ResponseEntity<>(venders, HttpStatus.OK);
     }
